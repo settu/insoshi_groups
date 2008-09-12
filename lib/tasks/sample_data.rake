@@ -9,7 +9,8 @@ namespace :db do
   
     desc "Load sample data"
     task :load => :environment do |t|
-      Rake::Task["install"].invoke      
+      Rake::Task["db:migrate"].invoke
+      Preference.create!
       @lipsum = File.open(File.join(DATA_DIRECTORY, "lipsum.txt")).read
       create_people
       make_connections
