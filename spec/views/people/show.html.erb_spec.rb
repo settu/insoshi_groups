@@ -8,6 +8,7 @@ describe "/people/show.html.erb" do
     assigns[:person] = @person
     assigns[:some_contacts] = @person.some_contacts
     assigns[:common_contacts] = []
+    assigns[:groups] = []
     render "/people/show.html.erb"
   end
 

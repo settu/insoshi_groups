@@ -87,8 +87,10 @@
     <%= render :partial => 'common_contacts' %>
   <%- end -%>
   <%= render :partial => 'groups', 
-             :locals => {:groups => @own_groups, :title => "Admin Groups", :link => "admin"} %>
+             :locals => { :groups => @own_groups,
+                          :title => "Admin Groups", :link => "admin" } %>
   <%= render :partial => 'groups', 
-             :locals => {:groups => @groups, :title => "Groups", :link => "groups"} %>
+             :locals => { :groups => @groups, :title => "Groups",
+                          :link => "groups"} %>
 <%- end -%>
 
