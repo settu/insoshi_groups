@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
   
   def index
     @groups = Group.paginate(:page => params[:page],
-                                          :per_page => RASTER_PER_PAGE)
+                             :per_page => RASTER_PER_PAGE)
 
     respond_to do |format|
       format.html
@@ -37,7 +37,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.save
-        flash[:notice] = 'Group was successfully created.'
+        flash[:success] = 'Group was successfully created.'
         format.html { redirect_to(group_path(@group)) }
       else
         format.html { render :action => "new" }
@@ -91,7 +91,7 @@ class GroupsController < ApplicationController
   def members
     @group = Group.find(params[:id])
     @members = @group.people.paginate(:page => params[:page],
-                                          :per_page => RASTER_PER_PAGE)
+                                      :per_page => RASTER_PER_PAGE)
     
     respond_to do |format|
       format.html

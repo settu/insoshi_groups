@@ -22,6 +22,10 @@ class Photo < ActiveRecord::Base
   include ActivityLogger
   UPLOAD_LIMIT = 5 # megabytes
   
+  # attr_accessible is a nightmare with attachment_fu, so use
+  # attr_protected instead.
+  attr_protected :id, :person_id, :parent_id, :created_at, :updated_at
+  
   belongs_to :person
   belongs_to :group
   has_attachment :content_type => :image, 
