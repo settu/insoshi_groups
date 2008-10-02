@@ -1,3 +1,16 @@
+# == Schema Information
+# Schema version: 20080916002106
+#
+# Table name: groups
+#
+#  id          :integer(4)      not null, primary key
+#  name        :string(255)     
+#  description :text            
+#  person_id   :integer(4)      
+#  created_at  :datetime        
+#  updated_at  :datetime        
+#
+
 class Group < ActiveRecord::Base
   include ActivityLogger
   
