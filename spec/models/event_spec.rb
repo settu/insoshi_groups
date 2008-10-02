@@ -14,7 +14,7 @@ describe Event do
   end
 
   it "should create a new instance given valid attributes" do
-    Event.create!(@valid_attributes)
+    Event.unsafe_create!(@valid_attributes)
   end
 
   describe "privacy settings" do
@@ -74,7 +74,8 @@ describe Event do
 
   describe 'event activity association' do
     before(:each) do
-      @event = Event.create!(@valid_attributes)
+      @event = Event.unsafe_build(@valid_attributes)
+      @event.save
       @activity = Activity.find_by_item_id(@event)
     end
     

@@ -14,6 +14,8 @@
 class Group < ActiveRecord::Base
   include ActivityLogger
   
+  attr_accessible :name, :description
+  
   validates_presence_of :name, :person_id
   
   has_many :photos, :dependent => :destroy, :order => "created_at"

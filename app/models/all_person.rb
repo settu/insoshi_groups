@@ -24,6 +24,7 @@
 #  wall_comment_notifications :boolean(1)      default(TRUE)
 #  blog_comment_notifications :boolean(1)      default(TRUE)
 #  email_verified             :boolean(1)      
+#  identity_url               :string(255)     
 #
 
 class AllPerson < Person

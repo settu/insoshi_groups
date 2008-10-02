@@ -15,6 +15,7 @@
 #  app_name            :string(255)     
 #  about               :text            
 #  demo                :boolean(1)      
+#  whitelist           :boolean(1)      
 #
 
 class Preference < ActiveRecord::Base
