@@ -22,15 +22,23 @@ class PeopleController < ApplicationController
     end
     if logged_in?
       @some_contacts = @person.some_contacts
-      @common_contacts = current_person.common_contacts_with(@person)
+      @common_contacts = current_person.common_contacts_with(@person,
+                                                             :page => 
+                                                                params[:page])
       @groups = @person.groups
       @own_groups = @person.own_groups
+      # Use the same max number as in basic contacts list.
+      num_contacts = Person::MAX_DEFAULT_CONTACTS
+      @some_common_contacts = @common_contacts[0...num_contacts]
+      @blog = @person.blog
+      @posts = @person.blog.posts.paginate(:page => params[:page])
+      @galleries = @person.galleries.paginate(:page => params[:page])
     end
     respond_to do |format|
       format.html
     end
   end
-  
+
   def new
     @body = "register single-col"
     @person = Person.new
@@ -135,7 +143,7 @@ class PeopleController < ApplicationController
   def common_contacts
     @person = Person.find(params[:id])
     @common_contacts = @person.common_contacts_with(current_person,
-                                                          params[:page])
+                                                    :page => params[:page])
     respond_to do |format|
       format.html
     end

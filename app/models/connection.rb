@@ -18,7 +18,8 @@ class Connection < ActiveRecord::Base
   
   belongs_to :person
   belongs_to :contact, :class_name => "Person", :foreign_key => "contact_id"
-  has_many :activities, :foreign_key => "item_id", :dependent => :destroy
+  has_many :activities, :foreign_key => "item_id", :dependent => :destroy,
+                        :conditions => "item_type = 'Connection'"
   validates_presence_of :person_id, :contact_id
   
   # Status codes.
@@ -49,8 +50,7 @@ class Connection < ActiveRecord::Base
     # Make a pending connection request.
     def request(person, contact, send_mail = nil)
       if send_mail.nil?
-        send_mail = global_prefs.email_notifications? &&
-                    contact.connection_notifications?
+        send_mail = !global_prefs.nil? && global_prefs.email_notifications? && contact.connection_notifications?
       end
       if person == contact or Connection.exists?(person, contact)
         nil

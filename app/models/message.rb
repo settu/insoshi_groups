@@ -117,6 +117,11 @@ class Message < Communication
     !replied_at.nil?
   end
   
+  # Return true if the message is new for the given person.
+  def new?(person)
+    not read? and person != sender
+  end
+  
   # Mark a message as read.
   def mark_as_read(time = Time.now)
     unless read?
@@ -158,7 +163,7 @@ class Message < Communication
     
     def send_receipt_reminder
       return if sender == recipient
-      @send_mail ||= Message.global_prefs.email_notifications? &&
+      @send_mail ||= !Message.global_prefs.nil? && Message.global_prefs.email_notifications? &&
                      recipient.message_notifications?
       PersonMailer.deliver_message_notification(self) if @send_mail
     end

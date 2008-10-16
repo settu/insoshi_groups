@@ -74,8 +74,12 @@ describe Event do
 
   describe 'event activity association' do
     before(:each) do
+<<<<<<< HEAD:spec/models/event_spec.rb
       @event = Event.unsafe_build(@valid_attributes)
       @event.save
+=======
+      @event = Event.unsafe_create(@valid_attributes)
+>>>>>>> insoshi/edge:spec/models/event_spec.rb
       @activity = Activity.find_by_item_id(@event)
     end
     
