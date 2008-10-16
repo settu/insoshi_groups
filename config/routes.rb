@@ -1,5 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-<<<<<<< HEAD:config/routes.rb
   map.resources :groups, 
     :member => { :join => :post, 
                  :leave => :post, 
@@ -9,10 +8,8 @@ ActionController::Routing::Routes.draw do |map|
                  :save_photo => :post,
                  :delete_photo => :delete
                  }
-=======
   map.resources :categories
   map.resources :links
->>>>>>> insoshi/edge:config/routes.rb
   map.resources :events, :member => { :attend => :get, 
                                       :unattend => :get } do |event|
     event.resources :comments
